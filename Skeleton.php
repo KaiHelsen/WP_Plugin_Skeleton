@@ -11,7 +11,7 @@ use SKEL\Includes\SKEL_Deactivator;
 use SKEL\Includes\SKEL_Plugin;
 
 /**
- * @link              https://www.peleman.com
+ * @link              N/A
  * @since             0.1.0
  * @package           SKEL
  *
