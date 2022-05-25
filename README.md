@@ -23,7 +23,7 @@ Additional functionality can be placed in one of three locations:
 * `Public` for public functionality, public pages, etc.
 
 For further implementation details, see the READMEs in the subfolders of the skeleton.
-
+___
 ## Naming
 For the most part, this skeleton follows [Wordpress Naming Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/#naming-conventions), with a few exceptions.
 

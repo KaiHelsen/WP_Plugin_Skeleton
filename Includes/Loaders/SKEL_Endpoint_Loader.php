@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SKEL\Includes\Loaders;
 
-use SKEL\Includes\RestAPI\Endpoints\SKEL_I_Endpoint;
+use SKEL\Includes\RestAPI\SKEL_I_Endpoint;
 
 class SKEL_Endpoint_Loader implements SKEL_I_Loader
 {

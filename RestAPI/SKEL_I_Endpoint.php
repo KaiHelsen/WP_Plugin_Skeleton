@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\RestAPI\Endpoints;
+namespace SKEL\Includes\RestAPI;
 
 interface SKEL_I_Endpoint
 {

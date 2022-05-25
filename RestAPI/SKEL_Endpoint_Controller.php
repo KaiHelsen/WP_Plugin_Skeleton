@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\RestAPI\Endpoints;
+namespace SKEL\Includes\RestAPI;
 
 use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
 use SKEL\Includes\Loaders\SKEL_Loader;
