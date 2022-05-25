@@ -22,8 +22,6 @@ class SKEL_API_Plugin implements SKEL_I_Hookable_Component
     public function __construct(string $namespace)
     {
         $this->namespace = $namespace;
-        $authenticator = new SKEL_Authenticator();
-
-        $this->add_hookable(new SKEL_API_Categories_Channel($this->namespace, '', $authenticator));
+        /* ADD API ENDPOINT & CHANNEL HOOKABLES */
     }
 }
