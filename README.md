@@ -14,3 +14,5 @@ I recommend being consistent in using strict types throughout the full project.
 2. Find-Replace all instance of `SKEL` with the `plugin_slug` of your plugin, including file names. the slug is also the namespace of the plugin skeleton, and will be used for PSR-4 autoloading.
 3. rename `Skeleton.php` to `My-Plugin-Name.php`
 4. edit the File Header in `My-Plugin-Name.php` with your details and plugin details.
+
+For further implementation details, see the READMEs in the subfolders of the skeleton.
