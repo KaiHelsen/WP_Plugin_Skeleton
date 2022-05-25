@@ -17,7 +17,7 @@ This method will take an instance of the `SKEL_Loader` and register its internal
 There are multiple ways of using this interface. 
 
 1. Use the `SKEL_Hookable_Branch_Trait` or inherit from the `SKEl_Abstract_Branch` class (which is just an abstract class implementing the interface and using the trait), which converts the class into a branch node in the plugin tree structure. Your class will have to define its child hookable(s) before the `register_hooks()` method is called.
-2. Inherit from one of the `SKEL_Abstract_Leaf_****` abstract classes, which represent a leaf node in the plugin tree.
+2. Inherit from one of the `SKEL_Abstract_Leaf_*` abstract classes, which represent a leaf node in the plugin tree.
 3. Manual implementation
 
 ### SKEL_Hookable_Branch_Trait.php
