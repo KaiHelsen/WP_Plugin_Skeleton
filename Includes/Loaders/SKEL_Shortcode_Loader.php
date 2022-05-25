@@ -20,7 +20,7 @@ final class SKEL_Shortcode_Loader implements SKEL_I_Loader
         $this->callback = $callback;
     }
 
-    final public function register()
+    final public function register(): void
     {
         \add_shortcode(
             $this->tag,

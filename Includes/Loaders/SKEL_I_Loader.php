@@ -6,5 +6,5 @@ namespace SKEL\Includes\Loaders;
 
 interface SKEL_I_Loader
 {
-    public function register();
+    public function register(): void;
 }

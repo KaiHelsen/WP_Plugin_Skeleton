@@ -24,7 +24,7 @@ final class SKEL_Filter_Loader implements SKEL_I_Loader
         $this->accepted_args = $accepted_args;
     }
 
-    final public function register()
+    final public function register(): void
     {
         \add_filter(
             $this->name,

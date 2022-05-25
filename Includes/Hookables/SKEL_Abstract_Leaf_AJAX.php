@@ -7,7 +7,7 @@ namespace SKEL\Includes\Hookables;
 use SKEL\Includes\Loaders\SKEL_Loader;
 use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
 
-abstract class SKEL_Abstract_Ajax_Component implements SKEL_I_Hookable_Component
+abstract class SKEL_Abstract_Leaf_Ajax implements SKEL_I_Hookable_Component
 {
 
     private string $nonceName;

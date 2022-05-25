@@ -4,8 +4,7 @@ declare(strict_types=1);
 
 namespace SKEL\Includes;
 
-use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
-use SKEL\Includes\Hookables\SKEL_Hookable_Parent_Trait;
+use SKEL\Includes\Hookables\SKEL_Abstract_Branch;
 use SKEL\Includes\Loaders\SKEL_Loader;
 
 if (!function_exists('is_plugin_active')) {
@@ -14,10 +13,8 @@ if (!function_exists('is_plugin_active')) {
 
 defined('ABSPATH') || exit;
 
-class SKEL_Plugin implements SKEL_I_Hookable_Component
+class SKEL_Plugin extends SKEL_Abstract_Branch
 {
-    use SKEL_Hookable_Parent_Trait;
-
     private SKEL_Loader $loader;
     private string $version;
     private string $plugin_name;

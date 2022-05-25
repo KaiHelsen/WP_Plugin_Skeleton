@@ -16,7 +16,7 @@ class SKEL_Endpoint_Loader implements SKEL_I_Loader
         $this->namespace = $namespace;
         $this->endpoint = $endpoint;
     }
-    final public function register()
+    final public function register(): void
     {
         register_rest_route(
             $this->namespace,

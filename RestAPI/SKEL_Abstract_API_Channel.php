@@ -29,7 +29,7 @@ class SKEL_Abstract_API_Channel implements SKEL_I_Hookable_Component
     final public function register_hooks(SKEL_Loader $loader): void
     {
         foreach ($this->endpoints as $endpoint) {
-            $loader->add_API_Endpoint($this->definition->get_namespace(), $endpoint);
+            $loader->add_API_endpoint($this->definition->get_namespace(), $endpoint);
         }
     }
 

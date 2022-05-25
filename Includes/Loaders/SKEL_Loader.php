@@ -141,7 +141,7 @@ class SKEL_Loader
      * @param SKEL_I_Endpoint $endpoint 
      * @return void
      */
-    public function add_API_Endpoint(string $namespace, SKEL_I_Endpoint $endpoint): void
+    public function add_API_endpoint(string $namespace, SKEL_I_Endpoint $endpoint): void
     {
         $this->endpoints[] = new SKEL_Endpoint_Loader($namespace, $endpoint);
     }

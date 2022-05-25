@@ -7,7 +7,7 @@ namespace SKEL\Includes\Hookables;
 use SKEL\Includes\hookables\SKEL_I_Hookable_Component;
 use SKEL\Includes\Loaders\SKEL_Loader;
 
-trait SKEL_Hookable_Parent_Trait
+trait SKEL_Hookable_Branch_Trait
 {
     /**
      * array of SKEL_I_Hookable_Component objects
@@ -30,6 +30,7 @@ trait SKEL_Hookable_Parent_Trait
     {
         unset($this->hookables[$hookable]);
     }
+
     public function register_hooks(SKEL_Loader $loader): void
     {
         foreach ($this->hookables as $hookable) {

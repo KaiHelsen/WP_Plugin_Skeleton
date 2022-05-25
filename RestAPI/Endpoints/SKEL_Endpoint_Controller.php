@@ -39,7 +39,7 @@ abstract class SKEL_Endpoint_Controller implements SKEL_I_Endpoint, SKEL_I_Hooka
 
     public function register_hooks(SKEL_Loader $loader): void
     {
-        $loader->add_API_Endpoint($this->namespace, $this);
+        $loader->add_API_endpoint($this->namespace, $this);
     }
 
     public abstract function do_action(\WP_REST_Request $request): \WP_REST_Response;

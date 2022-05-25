@@ -7,7 +7,7 @@ namespace SKEL\Includes\Hookables;
 use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
 use SKEL\Includes\Loaders\SKEL_Loader;
 
-abstract class SKEL_Abstract_Shortcode_Component implements SKEL_I_Hookable_Component
+abstract class SKEL_Abstract_Leaf_Shortcode implements SKEL_I_Hookable_Component
 {
     protected string $tag;
 
