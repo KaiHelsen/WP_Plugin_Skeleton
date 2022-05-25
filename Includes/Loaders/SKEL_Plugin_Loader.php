@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SKEL\Includes\Loaders;
 
-use SKEL\Includes\API\endpoints\SKEL_I_Endpoint;
+use SKEL\Includes\RestAPI\Endpoints\SKEL_I_Endpoint;
 use SKEL\Includes\Loaders\SKEL_Action_Loader;
 use SKEL\Includes\Loaders\SKEL_Filter_Loader;
 use SKEL\Includes\Loaders\SKEL_Shortcode_Loader;
