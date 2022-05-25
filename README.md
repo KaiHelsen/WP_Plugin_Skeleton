@@ -23,3 +23,27 @@ Additional functionality can be placed in one of three locations:
 * `Public` for public functionality, public pages, etc.
 
 For further implementation details, see the READMEs in the subfolders of the skeleton.
+
+## Naming
+For the most part, this skeleton follows [Wordpress Naming Standards](https://developer.wordpress.org/coding-standards/wordpress-coding-standards/php/#naming-conventions), with a few exceptions.
+
+### Class names
+The wordpress standard state that class file names should be prepended by `class-`, written in lowercase with hyphens separating words. ie `class-wp-error.php`.
+
+However, this naming convention is not PSR-4 compliant. We want the filename to be the same as the class name, so we can easily use Composer's autoloading functionality.
+
+**A class name should be prepended by the `plugin_slug`, separated by underscores, with each word capitalized. Abbreviated terms such as API can be fully capitalized.
+the file name of the class should be the same as the class name.**
+> `SKEL_My_Class`
+> 
+> `SKEL_My_API_Component`
+
+**Interfaces** should be named by following the `plugin_slug` with `I`.
+
+> `SKEL_I_Contract` 
+
+**Abstract classes** should be named by following the `plugin_slug` with `Abstract`.
+> `SKEL_Abstract_Class` 
+
+**Traits** should have names ending in `Trait`.
+> `SKEL_My_Name_Trait`
