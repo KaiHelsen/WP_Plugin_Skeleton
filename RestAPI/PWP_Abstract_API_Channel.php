@@ -7,7 +7,6 @@ namespace SKEL\includes\RestAPI;
 use SKEL\includes\loaders\SKEL_Plugin_Loader;
 use SKEL\includes\RestAPI\Endpoints\SKEL_I_Endpoint;
 use SKEL\includes\hookables\SKEL_I_Hookable_Component;
-use SKEL\includes\authentication\SKEL_I_Api_Authenticator;
 
 /**
  * abstract class for the handling and registering of API Endpoints.
