@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace SKEL\Includes\Hookables;
 
-use SKEL\Includes\Loaders\SKEL_Plugin_Loader;
+use SKEL\Includes\Loaders\SKEL_Loader;
 use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
 
 abstract class SKEL_Abstract_Ajax_Component implements SKEL_I_Hookable_Component
@@ -42,20 +42,20 @@ abstract class SKEL_Abstract_Ajax_Component implements SKEL_I_Hookable_Component
         $this->accepted_args = $accepted_args;
     }
 
-    final public function register_hooks(SKEL_Plugin_Loader $loader): void
+    final public function register_hooks(SKEL_Loader $loader): void
     {
         $loader->add_action('wp_enqueue_scripts', $this, 'enqueue_ajax', 8);
 
-        $loader->add_action(
-            "wp_ajax_{$this->objectName}",
+        $loader->add_ajax_action(
+            $this->objectName,
             $this,
             self::CALLBACK,
             $this->priority,
             $this->accepted_args
         );
 
-        $loader->add_action(
-            "wp_ajax_nopriv_{$this->objectName}",
+        $loader->add_ajax_nopriv_action(
+            $this->objectName,
             $this,
             self::CALLBACK_NOPRIV,
             $this->priority,

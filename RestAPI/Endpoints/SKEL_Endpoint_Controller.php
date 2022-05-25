@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\RestAPI\Endpoints;
+namespace SKEL\Includes\RestAPI\Endpoints;
 
-use SKEL\includes\hookables\SKEL_I_Hookable_Component;
-use SKEL\includes\loaders\SKEL_Plugin_Loader;
+use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
+use SKEL\Includes\Loaders\SKEL_Loader;
 
 abstract class SKEL_Endpoint_Controller implements SKEL_I_Endpoint, SKEL_I_Hookable_Component
 {
@@ -37,7 +37,7 @@ abstract class SKEL_Endpoint_Controller implements SKEL_I_Endpoint, SKEL_I_Hooka
         return $this->path;
     }
 
-    public function register_hooks(SKEL_Plugin_Loader $loader): void
+    public function register_hooks(SKEL_Loader $loader): void
     {
         $loader->add_API_Endpoint($this->namespace, $this);
     }

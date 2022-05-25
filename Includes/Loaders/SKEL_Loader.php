@@ -9,7 +9,7 @@ use SKEL\Includes\Loaders\SKEL_Action_Loader;
 use SKEL\Includes\Loaders\SKEL_Filter_Loader;
 use SKEL\Includes\Loaders\SKEL_Shortcode_Loader;
 
-class SKEL_Plugin_Loader
+class SKEL_Loader
 {
     /**
 

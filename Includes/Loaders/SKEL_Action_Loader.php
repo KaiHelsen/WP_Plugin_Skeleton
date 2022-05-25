@@ -7,7 +7,7 @@ namespace SKEL\Includes\Loaders;
 /**
  * wrapper class for Wordpress action hooks
  */
-final class SKEL_Action_Loader implements SKEL_ILoader
+final class SKEL_Action_Loader implements SKEL_I_Loader
 {
     private string $name;
     private object $component;

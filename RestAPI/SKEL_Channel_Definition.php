@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\RestAPI;
+namespace SKEL\Includes\RestAPI;
 
 class SKEL_Channel_Definition
 {

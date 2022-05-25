@@ -6,7 +6,7 @@ namespace SKEL\Includes\Loaders;
 
 use SKEL\Includes\RestAPI\Endpoints\SKEL_I_Endpoint;
 
-class SKEL_Endpoint_Loader implements SKEL_ILoader
+class SKEL_Endpoint_Loader implements SKEL_I_Loader
 {
     private string $namespace;
     private SKEL_I_Endpoint $endpoint;

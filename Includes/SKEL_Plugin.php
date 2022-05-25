@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace SKEL\Includes;
 
 use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
-use SKEL\Includes\Loaders\SKEL_Plugin_Loader;
-use SKEL\Includes\traits\SKEL_Hookable_Parent_Trait;
+use SKEL\Includes\Hookables\SKEL_Hookable_Parent_Trait;
+use SKEL\Includes\Loaders\SKEL_Loader;
 
 if (!function_exists('is_plugin_active')) {
     include_once(ABSPATH . '/wp-admin/includes/plugin.php');
@@ -18,7 +18,7 @@ class SKEL_Plugin implements SKEL_I_Hookable_Component
 {
     use SKEL_Hookable_Parent_Trait;
 
-    private SKEL_Plugin_Loader $loader;
+    private SKEL_Loader $loader;
     private string $version;
     private string $plugin_name;
 
@@ -26,7 +26,7 @@ class SKEL_Plugin implements SKEL_I_Hookable_Component
     {
         $this->version = defined('SKEL_VERSION') ? SKEL_VERSION : '1.0.0';
         $this->plugin_name = 'SKELETON';
-        $this->loader = new SKEL_Plugin_Loader();
+        $this->loader = new SKEL_Loader();
 
         if (is_admin()) {
 

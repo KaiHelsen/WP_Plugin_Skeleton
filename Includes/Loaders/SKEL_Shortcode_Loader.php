@@ -7,7 +7,7 @@ namespace SKEL\Includes\Loaders;
 /**
  * wrapper class for Wordpress shortcodes
  */
-final class SKEL_Shortcode_Loader implements SKEL_ILoader
+final class SKEL_Shortcode_Loader implements SKEL_I_Loader
 {
     private string $tag;
     private object $component;

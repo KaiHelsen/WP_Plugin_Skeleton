@@ -7,7 +7,7 @@ namespace SKEL\Includes\Loaders;
 /**
  * wrapper class for Wordpress filter hooks
  */
-final class SKEL_Filter_Loader implements SKEL_ILoader
+final class SKEL_Filter_Loader implements SKEL_I_Loader
 {
     private string $name;
     private object $component;

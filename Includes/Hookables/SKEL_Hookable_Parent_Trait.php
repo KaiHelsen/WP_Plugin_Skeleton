@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\traits;
+namespace SKEL\Includes\Hookables;
 
 use SKEL\Includes\hookables\SKEL_I_Hookable_Component;
-use SKEL\Includes\Loaders\SKEL_Plugin_Loader;
+use SKEL\Includes\Loaders\SKEL_Loader;
 
 trait SKEL_Hookable_Parent_Trait
 {
@@ -30,7 +30,7 @@ trait SKEL_Hookable_Parent_Trait
     {
         unset($this->hookables[$hookable]);
     }
-    public function register_hooks(SKEL_Plugin_Loader $loader): void
+    public function register_hooks(SKEL_Loader $loader): void
     {
         foreach ($this->hookables as $hookable) {
             $hookable->register_hooks($loader);

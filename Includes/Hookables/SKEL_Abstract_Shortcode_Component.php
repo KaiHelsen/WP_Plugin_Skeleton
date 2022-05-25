@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace SKEL\Includes\Hookables;
 
 use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
-use SKEL\Includes\Loaders\SKEL_Plugin_Loader;
+use SKEL\Includes\Loaders\SKEL_Loader;
 
 abstract class SKEL_Abstract_Shortcode_Component implements SKEL_I_Hookable_Component
 {
@@ -18,7 +18,7 @@ abstract class SKEL_Abstract_Shortcode_Component implements SKEL_I_Hookable_Comp
         $this->tag = $tag;
     }
 
-    final public function register_hooks(SKEL_Plugin_Loader $loader): void
+    final public function register_hooks(SKEL_Loader $loader): void
     {
         $loader->add_shortcode(
             $this->tag,

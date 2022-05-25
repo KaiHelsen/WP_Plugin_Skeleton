@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\RestAPI;
+namespace SKEL\Includes\RestAPI;
 
-use SKEL\includes\loaders\SKEL_Plugin_Loader;
-use SKEL\includes\RestAPI\Endpoints\SKEL_I_Endpoint;
-use SKEL\includes\hookables\SKEL_I_Hookable_Component;
+use SKEL\Includes\Loaders\SKEL_Loader;
+use SKEL\Includes\RestAPI\Endpoints\SKEL_I_Endpoint;
+use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
 
 /**
  * abstract class for the handling and registering of API Endpoints.
@@ -26,7 +26,7 @@ class SKEL_Abstract_API_Channel implements SKEL_I_Hookable_Component
         $this->endpoints[] = $endpoint;
     }
 
-    final public function register_hooks(SKEL_Plugin_Loader $loader): void
+    final public function register_hooks(SKEL_Loader $loader): void
     {
         foreach ($this->endpoints as $endpoint) {
             $loader->add_API_Endpoint($this->definition->get_namespace(), $endpoint);
