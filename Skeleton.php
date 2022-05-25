@@ -9,7 +9,6 @@ require plugin_dir_path(__FILE__) . '/vendor/autoload.php';
 use SKEL\Includes\SKEL_Activator;
 use SKEL\Includes\SKEL_Deactivator;
 use SKEL\Includes\SKEL_Plugin;
-use SKEL\Includes\versionControl\SKEL_VersionController;
 
 /**
  * @link              https://www.peleman.com
@@ -17,7 +16,7 @@ use SKEL\Includes\versionControl\SKEL_VersionController;
  * @package           SKEL
  *
  * @wordpress-plugin
- * Plugin Name:       Wordpress Plugin Skeleton
+ * Plugin Name:       Skeleton
  * Plugin URI:        https://github.com/KaiHelsen/WP_Plugin_Skeleton
  * requires PHP:      7.4
  * requires at least: 5.9.0
