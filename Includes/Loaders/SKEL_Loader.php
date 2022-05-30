@@ -12,13 +12,10 @@ use SKEL\Includes\Loaders\SKEL_Shortcode_Loader;
 class SKEL_Loader
 {
     /**
-
      * @var SKEL_I_Loader[]
      */
     private array $loaders;
     /**
-     * Undocumented variable
-     *
      * @var SKEL_Endpoint_Loader[]
      */
     private array $endpoints;
@@ -32,7 +29,7 @@ class SKEL_Loader
     }
 
     /**
-     * add regular action to loader
+     * add regular action to loader queue
      *
      * @param string $hook
      * @param object $component
@@ -47,7 +44,7 @@ class SKEL_Loader
     }
 
     /**
-     * Add Ajax action to loader. Method automatically adds 'wp_ajax_' prefix to hook name. For logged-in users
+     * Add Ajax action to loader queue. Method automatically adds 'wp_ajax_' prefix to hook name. For logged-in users
      *
      * @param string $hook 
      * @param object $component
@@ -62,7 +59,7 @@ class SKEL_Loader
     }
 
     /**
-     * Add Ajax action to loader. Method automatically adds 'wp_ajax_nopriv' prefix to hook name. For non-logged-in users.
+     * Add Ajax action to loader queue. Method automatically adds 'wp_ajax_nopriv' prefix to hook name. For non-logged-in users.
      *
      * @param string $hook 
      * @param object $component
@@ -77,7 +74,7 @@ class SKEL_Loader
     }
 
     /**
-     * Add admin post action to loader. method automatically ads 'admin_post' prefix to hook name.
+     * Add admin post action to loader queue . method automatically adds 'admin_post' prefix to hook name.
      *
      * @param string $hook
      * @param object $component
@@ -92,7 +89,7 @@ class SKEL_Loader
     }
 
     /**
-     * Add admin post action to loader. method automatically ads 'admin_post' prefix to hook name. for non-logged-in users.
+     * Add admin post action to loader queue. method automatically adds 'admin_post' prefix to hook name. for non-logged-in users.
      *
      * @param string $hook
      * @param object $component
@@ -107,7 +104,7 @@ class SKEL_Loader
     }
 
     /**
-     * add filter to loader
+     * add filter to loader queue
      *
      * @param string $hook
      * @param object $component
@@ -122,7 +119,7 @@ class SKEL_Loader
     }
 
     /**
-     * add shortcode to loader
+     * add shortcode to loader queue
      *
      * @param string $tag
      * @param object $component
@@ -135,7 +132,7 @@ class SKEL_Loader
     }
 
     /**
-     * add Endpoint 
+     * add Endpoint to loader queue. Endpoints are added to Wordpress automatically when `rest_api_init` is called.
      *
      * @param string $namespace namespace of the API
      * @param SKEL_I_Endpoint $endpoint 
@@ -147,7 +144,7 @@ class SKEL_Loader
     }
 
     /**
-     * callback function to register all hooks.
+     * callback function to add all hooks to wordpress
      *
      * @return void
      */
@@ -161,7 +158,7 @@ class SKEL_Loader
     }
 
     /**
-     * callback function to register all API Endpoints
+     * callback function to add all API Endpoints to wordpress
      *
      * @return void
      */
