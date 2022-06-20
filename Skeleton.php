@@ -37,7 +37,7 @@ defined('WPINC') || die;
  */
 define('SKEL_VERSION', '0.1.0');
 !defined('SKEL_OPTION_GROUP') ? define('SKEL_OPTION_GROUP', 'SKEL_OPTIONS') : null;
-!defined('SKEL_TEXT_DOMAIN') ? define('SKEL_TEXT_DOMAIN', 'SKELETON') : null;
+!defined('SKEL_TEXT_DOMAIN') ? define('SKEL_TEXT_DOMAIN', 'SKEL') : null;
 
 //register activation component. Is called when the plugin is activated
 register_activation_hook(__FILE__, function () {
