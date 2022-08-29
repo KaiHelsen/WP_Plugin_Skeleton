@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes;
+namespace SKEL\includes;
 
-use SKEL\Includes\versionControl\SKEL_VersionController;
+use SKEL\includes\versionControl\SKEL_VersionController;
 use wpdb;
 
 defined('ABSPATH') || exit;

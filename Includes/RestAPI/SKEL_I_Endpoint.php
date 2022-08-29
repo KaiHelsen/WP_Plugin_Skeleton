@@ -2,11 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\RestAPI;
+namespace SKEL\includes\restAPI;
 
 interface SKEL_I_Endpoint
 {
-
     /**
      * get expected parameters for REST API endpoint
      *

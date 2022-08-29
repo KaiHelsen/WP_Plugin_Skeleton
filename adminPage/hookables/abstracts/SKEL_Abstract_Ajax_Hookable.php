@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\Hookables;
+namespace SKEL\includes\hookables\abstracts;
 
-use SKEL\Includes\Loaders\SKEL_Loader;
-use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
+use SKEL\includes\loaders\SKEL_Plugin_Loader;
+use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
 
-abstract class SKEL_Abstract_Leaf_Ajax implements SKEL_I_Hookable_Component
+abstract class SKEL_Abstract_Ajax_Hookable implements SKEL_I_Hookable_Component
 {
 
-    private string $nonceName;
+    protected string $nonceName;
     private string $scriptHandle;
-    private string $objectName;
+    protected string $objectName;
     private string $jsFilePath;
 
     private int $priority;
@@ -24,40 +24,46 @@ abstract class SKEL_Abstract_Leaf_Ajax implements SKEL_I_Hookable_Component
     /**
      * Undocumented function
      *
-     * @param string $nonceName name of the nonce for the Ajax call. Used for verifying a source and preventing replay attacks.
      * @param string $handle script handle to which data will be attached.
-     * @param string $objectName name for the Javascript object that is to be passed directly.
      * @param string $jsFilePath path of the Javascript file relative to the component file location.
      * @param integer $priority when executing, the priority of this hook. default `10`
      * @param integer $accepted_args amount of arguments this hook accepts. default `1`
      */
-    public function __construct(string $nonceName, string $handle, string $objectName, string $jsFilePath, int $priority = 10, int $accepted_args = 1)
+    public function __construct(string $handle,  string $jsFilePath, int $priority = 10, int $accepted_args = 1)
     {
-        $this->nonceName = $nonceName;
         $this->scriptHandle = $handle;
-        $this->objectName = $objectName;
+        $this->objectName = $handle . '_object';
+        $this->nonceName = $handle . '_nonce';
         $this->jsFilePath = $jsFilePath;
 
         $this->priority = $priority;
         $this->accepted_args = $accepted_args;
     }
 
-    final public function register_hooks(SKEL_Loader $loader): void
+    final public function register(): void
     {
-        $loader->add_action('wp_enqueue_scripts', $this, 'enqueue_ajax', 8);
-
-        $loader->add_ajax_action(
-            $this->objectName,
-            $this,
-            self::CALLBACK,
+        \add_action(
+            'wp_enqueue_scripts',
+            array(
+                $this,
+                'enqueue_ajax'
+            ),
+        );
+        \add_action(
+            "wp_ajax_{$this->scriptHandle}",
+            array(
+                $this,
+                self::CALLBACK
+            ),
             $this->priority,
             $this->accepted_args
         );
-
-        $loader->add_ajax_nopriv_action(
-            $this->objectName,
-            $this,
-            self::CALLBACK_NOPRIV,
+        \add_action(
+            "wp_ajax_nopriv_{$this->scriptHandle}",
+            array(
+                $this,
+                self::CALLBACK_NOPRIV
+            ),
             $this->priority,
             $this->accepted_args
         );
@@ -77,7 +83,7 @@ abstract class SKEL_Abstract_Leaf_Ajax implements SKEL_I_Hookable_Component
             $this->objectName,
             array(
                 'ajax_url' => admin_url('admin-ajax.php'),
-                'nonceName' => wp_create_nonce($this->nonceName)
+                'nonce' => wp_create_nonce($this->nonceName)
             )
         );
     }
@@ -95,4 +101,15 @@ abstract class SKEL_Abstract_Leaf_Ajax implements SKEL_I_Hookable_Component
      * @return void
      */
     public abstract function callback_nopriv(): void;
+
+    /**
+     * wrapper method to handle nonce validation. returns 0 if nonce is invalid, 1 or 2 if valid.
+     * @param string $nonce
+     * @return bool
+     */
+    protected function verify_nonce(string $nonce): bool
+    {
+        $value = wp_verify_nonce($nonce, $this->nonceName);
+        return $value !== 0;
+    }
 }

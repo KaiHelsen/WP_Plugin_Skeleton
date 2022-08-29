@@ -2,10 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes;
+namespace SKEL\includes;
 
-use SKEL\Includes\Hookables\SKEL_Abstract_Branch;
-use SKEL\Includes\Loaders\SKEL_Loader;
+use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
+use SKEL\includes\hookables\SKEL_Abstract_Branch;
+use SKEL\includes\loadables\SKEL_Loader;
+use SKEL\includes\restAPI\SKEL_I_Endpoint;
 
 if (!function_exists('is_plugin_active')) {
     include_once(ABSPATH . '/wp-admin/includes/plugin.php');
@@ -13,7 +15,7 @@ if (!function_exists('is_plugin_active')) {
 
 defined('ABSPATH') || exit;
 
-class SKEL_Plugin extends SKEL_Abstract_Branch
+class SKEL_Plugin
 {
     private SKEL_Loader $loader;
     private string $version;
@@ -26,16 +28,27 @@ class SKEL_Plugin extends SKEL_Abstract_Branch
         $this->loader = new SKEL_Loader();
 
         if (is_admin()) {
-
-            /*  ADD ADMIN MENU HOOKABLES HERE */
-            /*  These are hookables that are only required in the admin panel of wordpress. Loading them every time a call is done to wordpress is a waste of resources.*/
-            /*  Storing them here is thus an easy way to save a little bit on performance */
+            $this->admin_hooks();
         }
+        $this->public_hooks();
+        $this->api_endpoints();
+    }
 
-        /*  ADD PUBLIC HOOKABLES HERE */
+    private function admin_hooks(): void
+    {
+        /** ADD ADMIN ONLY HOOKABLES */
+        
+        //ie. $this->register_hookable(new my_hookable_class());
+    }
 
-        /* REGISTER CHILD HOOKS WITH LOADER */
-        $this->register_hooks($this->loader);
+    private function public_hooks(): void
+    {
+        /** ADD PUBLIC HOOKABLES */
+    }
+
+    private function api_endpoints(): void
+    {
+        /** ADD API HOOKABLES & API PLUGIN COMPONENTS */
     }
 
     final public static function run()
@@ -48,5 +61,15 @@ class SKEL_Plugin extends SKEL_Abstract_Branch
     private function register_components()
     {
         $this->loader->register_hooks_to_wp();
+    }
+
+    private function register_hookable(SKEL_I_Hookable_Component $hookable): void
+    {
+        $this->loader->add_hookable($hookable);
+    }
+
+    private function register_API_Endpoint(SKEL_I_Endpoint $hookable): void
+    {
+        $this->loader->add_API_endpoint($hookable);
     }
 }

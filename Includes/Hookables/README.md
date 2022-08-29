@@ -1,9 +1,9 @@
-# Hookables
+# hookables
 ## About
 
-**Hookables** are essentially the components of the intended plugin structure. A hookable can contain multiple other Hookables, and every Hookable registers its own hooks.
+**hookables** are essentially the components of the intended plugin structure. A hookable can contain multiple other hookables, and every Hookable registers its own hooks.
 
-Hookables will make up the structure of the Plugin itself. Because they are components, the final structure will be a `tree` of connected components. In this version of the plugin skeleton, there are two ways to implement
+hookables will make up the structure of the Plugin itself. Because they are components, the final structure will be a `tree` of connected components. In this version of the plugin skeleton, there are two ways to implement
 
 ___
 ### SKEL_I_Hookable_Component.php

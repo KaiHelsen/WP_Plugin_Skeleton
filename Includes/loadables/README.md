@@ -1,4 +1,4 @@
-# Loaders
+# loadables
 ## About
 The loaders directory contains a handful of classes that help with the loading and registering of Wordpress Hooks.
 

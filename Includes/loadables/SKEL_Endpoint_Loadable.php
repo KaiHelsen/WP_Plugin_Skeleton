@@ -2,11 +2,12 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\Loaders;
+namespace SKEL\includes\loadables;
 
-use SKEL\Includes\RestAPI\SKEL_I_Endpoint;
+use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
+use SKEL\includes\restAPI\SKEL_I_Endpoint;
 
-class SKEL_Endpoint_Loader implements SKEL_I_Loader
+class SKEL_Endpoint_Loadable implements SKEL_I_Hookable_Component
 {
     private string $namespace;
     private SKEL_I_Endpoint $endpoint;

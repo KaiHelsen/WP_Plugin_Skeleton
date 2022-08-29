@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\RestAPI;
+namespace SKEL\includes\restAPI\abstracts;
 
-use SKEL\Includes\Hookables\SKEL_I_Hookable_Component;
-use SKEL\Includes\Loaders\SKEL_Loader;
+use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
+use SKEL\includes\restAPI\SKEL_I_Endpoint;
 
 abstract class SKEL_Endpoint_Controller implements SKEL_I_Endpoint, SKEL_I_Hookable_Component
 {
@@ -37,9 +37,23 @@ abstract class SKEL_Endpoint_Controller implements SKEL_I_Endpoint, SKEL_I_Hooka
         return $this->path;
     }
 
-    public function register_hooks(SKEL_Loader $loader): void
+    public function get_arguments(): array
     {
-        $loader->add_API_endpoint($this->namespace, $this);
+        return [];
+    }
+
+    final public function register(): void
+    {
+        register_rest_route(
+            $this->namespace,
+            $this->get_path(),
+            array(
+                'args' => $this->get_arguments(),
+                'callback' => $this->get_callback(),
+                'methods' => $this->get_methods(),
+                'permission_callback' => $this->get_permission_callback(),
+            )
+        );
     }
 
     public abstract function do_action(\WP_REST_Request $request): \WP_REST_Response;

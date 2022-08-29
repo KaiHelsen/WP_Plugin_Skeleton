@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\Loaders;
+namespace SKEL\includes\loadables;
+
+use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
 
 /**
  * wrapper class for Wordpress shortcodes
  */
-final class SKEL_Shortcode_Loader implements SKEL_I_Loader
+final class SKEL_Shortcode_Loadable implements SKEL_I_Hookable_Component
 {
     private string $tag;
     private object $component;

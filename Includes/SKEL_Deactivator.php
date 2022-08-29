@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes;
+namespace SKEL\includes;
 
 defined('ABSPATH') || exit;
 

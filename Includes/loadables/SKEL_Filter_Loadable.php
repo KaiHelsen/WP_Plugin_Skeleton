@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\Loaders;
+namespace SKEL\includes\loadables;
+
+use SKEL\includes\hookables\SKEL_I_Hookable_Component;
 
 /**
  * wrapper class for Wordpress filter hooks
  */
-final class SKEL_Filter_Loader implements SKEL_I_Loader
+final class SKEL_Filter_Loadable implements SKEL_I_Hookable_Component
 {
     private string $name;
     private object $component;

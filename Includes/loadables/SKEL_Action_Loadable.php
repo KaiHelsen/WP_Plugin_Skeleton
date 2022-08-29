@@ -2,12 +2,14 @@
 
 declare(strict_types=1);
 
-namespace SKEL\Includes\Loaders;
+namespace SKEL\includes\loadables;
+
+use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
 
 /**
  * wrapper class for Wordpress action hooks
  */
-final class SKEL_Action_Loader implements SKEL_I_Loader
+final class SKEL_Action_Loadable implements SKEL_I_Hookable_Component
 {
     private string $name;
     private object $component;
@@ -24,7 +26,7 @@ final class SKEL_Action_Loader implements SKEL_I_Loader
         $this->accepted_args = $accepted_args;
     }
 
-    final public function register() : void
+    final public function register(): void
     {
         \add_action(
             $this->name,
