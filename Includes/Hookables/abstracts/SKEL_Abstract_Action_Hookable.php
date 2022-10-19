@@ -6,6 +6,9 @@ namespace SKEL\includes\hookables\abstracts;
 
 use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
 
+/**
+ * abstract atomic class for wordpress actions
+ */
 abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Component
 {
     protected string $hook;
@@ -14,6 +17,8 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
     protected int $accepted_args;
 
     /**
+     * 
+     * abstract atomic class for wordpress actions
      * @param string $hook WP Hook to hook onto
      * @param string $callback name of the method that will be called
      * @param integer $priority execution priority of this component
