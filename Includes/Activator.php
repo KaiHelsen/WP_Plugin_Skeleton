@@ -4,9 +4,6 @@ declare(strict_types=1);
 
 namespace SKEL\includes;
 
-use SKEL\includes\versionControl\SKEL_VersionController;
-use wpdb;
-
 defined('ABSPATH') || exit;
 
 require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
