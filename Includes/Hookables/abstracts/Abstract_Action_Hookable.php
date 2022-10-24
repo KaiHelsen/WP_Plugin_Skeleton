@@ -18,7 +18,7 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
 
     /**
      * 
-     * abstract atomic class for wordpress actions
+     * abstract atomic class for wordpress actionsP
      * @param string $hook WP Hook to hook onto
      * @param string $callback name of the method that will be called
      * @param integer $priority execution priority of this component

@@ -52,3 +52,4 @@ register_deactivation_hook(__FILE__, function () {
 });
 
 SKEL_Plugin::run();
+
