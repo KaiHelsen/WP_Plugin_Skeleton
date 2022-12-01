@@ -11,7 +11,7 @@ use SKEL\includes\hookables\SKEL_I_Hookable_Component;
  */
 abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Component
 {
-    /***
+    /**
      * @var Hook[]
      */
     protected array $hooks;
@@ -22,7 +22,7 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
      * 
      * abstract atomic class for wordpress actions
      * @param string $hook WP Hook to hook onto
-     * @param string $callback name of the method that will be called
+     * @param string $callback name of the class method that will be called
      * @param integer $priority execution priority of this component
      * @param integer $accepted_args amount of arguments this method's callback accepts
      */
@@ -35,17 +35,36 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
 
     final public function register(): void
     {
-        foreach($this->hooks as $hook){
-        \add_action(
-            $hook->hook,
-            array($this, $this->callback),
-            $hook->priority,
-            $this->accepted_args
-        );
-    }
+        foreach ($this->hooks as $hook) {
+            \add_action(
+                $hook->hook,
+                array($this, $this->callback),
+                $hook->priority,
+                $this->accepted_args
+            );
+        }
     }
 
-    final public function add_hook(string $hook, int $priority): void{
+    final public function deregister(): void
+    {
+        foreach ($this->hooks as $hook) {
+            \remove_action(
+                $hook->hook,
+                array($this, $this->callback),
+                $hook->priority
+            );
+        }
+    }
+
+    /**
+     * Method for attaching this hookable to another hook
+     *
+     * @param string $hook
+     * @param integer $priority
+     * @return void
+     */
+    final public function add_hook(string $hook, int $priority): void
+    {
         $this->hooks[] = new Hook($hook, $priority);
     }
 }
