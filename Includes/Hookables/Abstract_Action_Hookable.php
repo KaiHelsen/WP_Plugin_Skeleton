@@ -2,23 +2,26 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\hookables\abstracts;
+namespace SKEL\includes\hookables;
 
-use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
+use SKEL\includes\hookables\SKEL_I_Hookable_Component;
 
 /**
  * abstract atomic class for wordpress actions
  */
 abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Component
 {
-    protected string $hook;
+    /***
+     * @var Hook[]
+     */
+    protected array $hooks;
     protected string $callback;
     protected int $priority;
     protected int $accepted_args;
 
     /**
      * 
-     * abstract atomic class for wordpress actionsP
+     * abstract atomic class for wordpress actions
      * @param string $hook WP Hook to hook onto
      * @param string $callback name of the method that will be called
      * @param integer $priority execution priority of this component
@@ -26,19 +29,24 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
      */
     public function __construct(string $hook, string $callback, int $priority = 10, $accepted_args = 1)
     {
-        $this->hook = $hook;
+        $this->hooks[] = new Hook($hook, $priority);
         $this->callback = $callback;
-        $this->priority = $priority;
         $this->accepted_args = $accepted_args;
     }
 
     final public function register(): void
     {
+        foreach($this->hook as $hook){
         \add_action(
-            $this->hook,
+            $hook->hook,
             array($this, $this->callback),
-            $this->priority,
+            $hook->priority,
             $this->accepted_args
         );
+    }
+    }
+
+    final public function add_hook(string $hook, int $priority): void{
+        $this->hooks[] = new Hook($hook, $priority);
     }
 }

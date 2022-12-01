@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\hookables\abstracts;
+namespace SKEL\includes\hookables;
 
-use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
+use SKEL\includes\hookables\SKEL_I_Hookable_Component;
 
 abstract class SKEL_Abstract_Ajax_Hookable implements SKEL_I_Hookable_Component
 {

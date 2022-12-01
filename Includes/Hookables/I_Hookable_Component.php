@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\hookables\abstracts;
+namespace SKEL\includes\hookables;
 /**
  * interface for objects to register hooks, actions and filters.
  */
