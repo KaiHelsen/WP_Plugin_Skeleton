@@ -13,7 +13,6 @@ abstract class SKEL_Abstract_Filter_Hookable implements SKEL_I_Hookable_Componen
      */
     protected array $hooks;
     protected string $callback;
-    protected int $priority;
     protected int $accepted_args;
 
     public function __construct(string $hook, string $callback, int $priority = 10, $accepted_args = 1)
@@ -26,7 +25,7 @@ abstract class SKEL_Abstract_Filter_Hookable implements SKEL_I_Hookable_Componen
 
     final public function register(): void
     {
-        foreach ($this->hook as $hook) {
+        foreach ($this->hooks as $hook) {
             \add_filter(
                 $hook->hook,
                 array($this, $this->callback),

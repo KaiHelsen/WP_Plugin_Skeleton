@@ -16,7 +16,6 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
      */
     protected array $hooks;
     protected string $callback;
-    protected int $priority;
     protected int $accepted_args;
 
     /**
@@ -36,7 +35,7 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
 
     final public function register(): void
     {
-        foreach($this->hook as $hook){
+        foreach($this->hooks as $hook){
         \add_action(
             $hook->hook,
             array($this, $this->callback),
