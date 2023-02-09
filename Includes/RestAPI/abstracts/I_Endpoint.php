@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\restAPI;
+namespace SKEL\includes\restAPI\abstracts;
 
-interface SKEL_I_Endpoint
+interface I_Endpoint
 {
     /**
      * get expected parameters for REST API endpoint

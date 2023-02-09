@@ -6,7 +6,7 @@ namespace SKEL\includes\hookables;
 /**
  * interface for objects to register hooks, actions and filters.
  */
-interface SKEL_I_Hookable_Component
+interface I_Hookable_Component
 {
     /**
      * register actions and filters for this class

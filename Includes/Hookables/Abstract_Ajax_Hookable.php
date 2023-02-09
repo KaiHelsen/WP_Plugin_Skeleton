@@ -4,39 +4,70 @@ declare(strict_types=1);
 
 namespace SKEL\includes\hookables;
 
-use SKEL\includes\hookables\SKEL_I_Hookable_Component;
+use SKEL\includes\hookables\I_Hookable_Component;
 
-abstract class SKEL_Abstract_Ajax_Hookable implements SKEL_I_Hookable_Component
+/**
+ * Abstract Ajax hookable class. Facilitates AJAX calls between wordpress and the plugin with an OOP hookable object
+ */
+abstract class Abstract_Ajax_Hookable implements I_Hookable_Component
 {
 
+    /**
+     * name of the AJAX nonce used by this hookable
+     *
+     * @var string
+     */
     protected string $nonceName;
+
+    /**
+     * Script handle of the Ajax method. 
+     *
+     * @var string
+     */
     private string $scriptHandle;
+
+    /**
+     * name of the Ajax object to be used by the script
+     *
+     * @var string
+     */
     protected string $objectName;
+
+    /**
+     * absolute path of the Javascript file.
+     *
+     * @var string
+     */
     private string $jsFilePath;
 
+    /**
+     * execution priority
+     *
+     * @var integer
+     */
     private int $priority;
-    private int $accepted_args;
 
     private const CALLBACK = 'callback';
     private const CALLBACK_NOPRIV = 'callback_nopriv';
 
+    private const OBJECT_SUFFIX = '_object';
+    private const NONCE_SUFFIX = '_nonce';
+
     /**
-     * Undocumented function
+     * Abstract Ajax hookable class. Facilitates AJAX calls between wordpress and the plugin with an OOP hookable object
      *
-     * @param string $handle script handle to which data will be attached.
-     * @param string $jsFilePath path of the Javascript file relative to the component file location.
+     * @param string $handle script handle to which data will be attached and unique ID of this ajax function. Will be used for all unique internal naming.
+     * @param string $jsFilePath absolute path of the Javascript file.
      * @param integer $priority when executing, the priority of this hook. default `10`
-     * @param integer $accepted_args amount of arguments this hook accepts. default `1`
      */
-    public function __construct(string $handle,  string $jsFilePath, int $priority = 10, int $accepted_args = 1)
+    public function __construct(string $handle, string $jsFilePath, int $priority = 10)
     {
         $this->scriptHandle = $handle;
-        $this->objectName = $handle . '_object';
-        $this->nonceName = $handle . '_nonce';
+        $this->objectName = $handle . self::OBJECT_SUFFIX;
+        $this->nonceName = $handle . self::NONCE_SUFFIX;
         $this->jsFilePath = $jsFilePath;
 
         $this->priority = $priority;
-        $this->accepted_args = $accepted_args;
     }
 
     final public function register(): void
@@ -48,33 +79,36 @@ abstract class SKEL_Abstract_Ajax_Hookable implements SKEL_I_Hookable_Component
                 'enqueue_ajax'
             ),
         );
-        \add_action(
+        add_action(
             "wp_ajax_{$this->scriptHandle}",
             array(
                 $this,
                 self::CALLBACK
             ),
             $this->priority,
-            $this->accepted_args
         );
-        \add_action(
+        add_action(
             "wp_ajax_nopriv_{$this->scriptHandle}",
             array(
                 $this,
                 self::CALLBACK_NOPRIV
             ),
             $this->priority,
-            $this->accepted_args
         );
     }
 
+    /**
+     * helper method to enqueue related Ajax scripts
+     *
+     * @return void
+     */
     final public function enqueue_ajax(): void
     {
         wp_enqueue_script(
             $this->scriptHandle,
             $this->jsFilePath,
             array('jquery'),
-            rand(0, 2000),
+            wp_rand(0, 2000),
             true
         );
         wp_localize_script(
@@ -85,6 +119,8 @@ abstract class SKEL_Abstract_Ajax_Hookable implements SKEL_I_Hookable_Component
                 'nonce' => wp_create_nonce($this->nonceName)
             )
         );
+
+        // error_log("{$this->scriptHandle} registered");
     }
 
     /**

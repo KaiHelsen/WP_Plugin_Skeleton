@@ -21,7 +21,7 @@ class SKEL_Activator
     public function init_settings()
     {
         register_setting(SKEL_OPTION_GROUP, 'SKEL-version', array(
-            'default' => '0.0.1',
+            'default' => '0.0.0',
         ));
     }
 }

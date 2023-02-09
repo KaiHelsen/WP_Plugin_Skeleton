@@ -43,7 +43,7 @@ the file name of the class should be the same as the class name.**
 > `SKEL_I_Contract` 
 
 **Abstract classes** should be named by following the `plugin_slug` with `Abstract`.
-> `SKEL_Abstract_Class` 
+> `Abstract_Class` 
 
 **Traits** should have names ending in `Trait`.
 > `SKEL_My_Name_Trait`

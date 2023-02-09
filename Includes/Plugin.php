@@ -4,10 +4,9 @@ declare(strict_types=1);
 
 namespace SKEL\includes;
 
-use SKEL\includes\hookables\abstracts\SKEL_I_Hookable_Component;
-use SKEL\includes\hookables\SKEL_Abstract_Branch;
-use SKEL\includes\loadables\SKEL_Loader;
-use SKEL\includes\restAPI\SKEL_I_Endpoint;
+use SKEL\includes\hookables\I_Hookable_Component;
+use SKEL\includes\loadables\Loader;
+use SKEL\includes\restAPI\abstracts\I_Endpoint;
 
 if (!function_exists('is_plugin_active')) {
     include_once(ABSPATH . '/wp-admin/includes/plugin.php');
@@ -17,7 +16,7 @@ defined('ABSPATH') || exit;
 
 class SKEL_Plugin
 {
-    private SKEL_Loader $loader;
+    private Loader $loader;
     private string $version;
     private string $plugin_name;
 
@@ -25,7 +24,7 @@ class SKEL_Plugin
     {
         $this->version = defined('SKEL_VERSION') ? SKEL_VERSION : '1.0.0';
         $this->plugin_name = 'SKELETON';
-        $this->loader = new SKEL_Loader();
+        $this->loader = new Loader();
 
         if (is_admin()) {
             $this->admin_hooks();
@@ -37,7 +36,7 @@ class SKEL_Plugin
     private function admin_hooks(): void
     {
         /** ADD ADMIN ONLY HOOKABLES */
-        
+
         //ie. $this->register_hookable(new my_hookable_class());
     }
 
@@ -63,13 +62,19 @@ class SKEL_Plugin
         $this->loader->register_hooks_to_wp();
     }
 
-    private function register_hookable(SKEL_I_Hookable_Component $hookable): void
+    private function register_hookable(I_Hookable_Component $hookable): void
     {
         $this->loader->add_hookable($hookable);
     }
 
-    private function register_API_Endpoint(SKEL_I_Endpoint $hookable): void
+    /**
+     * @param I_Hookable_Component ...$hookables
+     * @return void
+     */
+    private function add_hookables(...$hookables): void
     {
-        $this->loader->add_API_endpoint($hookable);
+        foreach ($hookables as $hookable) {
+            $this->loader->add_hookable($hookable);
+        }
     }
 }

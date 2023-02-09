@@ -4,42 +4,18 @@ declare(strict_types=1);
 
 namespace SKEL\includes\hookables;
 
-use SKEL\includes\hookables\SKEL_I_Hookable_Component;
-
 /**
- * abstract atomic class for wordpress actions
+ * Abstract observer class for implementing WP action hooks in an OOP fashion. 
  */
-abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Component
+abstract class Abstract_Action_Hookable extends Abstract_Hookable
 {
-    /**
-     * @var Hook[]
-     */
-    protected array $hooks;
-    protected string $callback;
-    protected int $accepted_args;
-
-    /**
-     * 
-     * abstract atomic class for wordpress actions
-     * @param string $hook WP Hook to hook onto
-     * @param string $callback name of the class method that will be called
-     * @param integer $priority execution priority of this component
-     * @param integer $accepted_args amount of arguments this method's callback accepts
-     */
-    public function __construct(string $hook, string $callback, int $priority = 10, $accepted_args = 1)
-    {
-        $this->hooks[] = new Hook($hook, $priority);
-        $this->callback = $callback;
-        $this->accepted_args = $accepted_args;
-    }
-
     final public function register(): void
     {
-        foreach ($this->hooks as $hook) {
+        foreach ($this->hooks as $hook => $priority) {
             \add_action(
-                $hook->hook,
+                $hook,
                 array($this, $this->callback),
-                $hook->priority,
+                $priority,
                 $this->accepted_args
             );
         }
@@ -47,24 +23,12 @@ abstract class SKEL_Abstract_Action_Hookable implements SKEL_I_Hookable_Componen
 
     final public function deregister(): void
     {
-        foreach ($this->hooks as $hook) {
-            \remove_action(
-                $hook->hook,
+        foreach ($this->hooks as $hook => $priority) {
+            remove_action(
+                $hook,
                 array($this, $this->callback),
-                $hook->priority
+                $priority
             );
         }
-    }
-
-    /**
-     * Method for attaching this hookable to another hook
-     *
-     * @param string $hook
-     * @param integer $priority
-     * @return void
-     */
-    final public function add_hook(string $hook, int $priority): void
-    {
-        $this->hooks[] = new Hook($hook, $priority);
     }
 }
