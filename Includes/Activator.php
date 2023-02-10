@@ -11,7 +11,7 @@ require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
  * activator class for the Peleman Product API plugin
  * is to be run when the plugin is activated from the Wordpress admin menu
  */
-class SKEL_Activator
+class Activator
 {
     public function activate()
     {

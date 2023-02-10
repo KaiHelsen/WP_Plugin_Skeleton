@@ -10,7 +10,7 @@ defined('ABSPATH') || exit;
  * deactivator class for the SKELETON plugin
  * is to be run when the plugin is deactivated
  */
-class SKEL_Deactivator
+class Deactivator
 {
     public static function deactivate()
     {

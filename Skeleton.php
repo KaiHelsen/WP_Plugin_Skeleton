@@ -6,9 +6,9 @@ namespace SKEL;
 
 require plugin_dir_path(__FILE__) . '/vendor/autoload.php';
 
-use SKEL\Includes\SKEL_Activator;
-use SKEL\Includes\SKEL_Deactivator;
-use SKEL\Includes\SKEL_Plugin;
+use SKEL\Includes\Activator;
+use SKEL\Includes\Deactivator;
+use SKEL\Includes\Plugin;
 
 /**
  * @link              N/A
@@ -40,15 +40,15 @@ define('SKEL_VERSION', '0.1.0');
 
 //register activation component. Is called when the plugin is activated
 register_activation_hook(__FILE__, function () {
-    $activator = new SKEL_Activator();
+    $activator = new Activator();
     $activator->activate();
 });
 
 //register deactivation component. Is called when the plugin is deactivated
 register_deactivation_hook(__FILE__, function () {
-    $deactivator = new SKEL_Deactivator();
+    $deactivator = new Deactivator();
     $deactivator->deactivate();
 });
 
-SKEL_Plugin::run();
+Plugin::run();
 
