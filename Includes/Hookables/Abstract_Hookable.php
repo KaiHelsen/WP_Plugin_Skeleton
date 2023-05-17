@@ -32,7 +32,7 @@ abstract class Abstract_Hookable implements I_Hookable_Component
      */
     public function __construct(string $hook, string $callback, int $priority = 10, $accepted_args = 1)
     {
-        $this->hooks[$hook] = $priority;
+        $this->add_hook($hook, $priority);
         $this->callback = $callback;
         $this->accepted_args = $accepted_args;
     }

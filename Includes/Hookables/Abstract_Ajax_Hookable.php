@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace SKEL\includes\hookables;
+namespace PWP\includes\hookables\abstracts;
 
-use SKEL\includes\hookables\I_Hookable_Component;
+use PWP\includes\hookables\abstracts\I_Hookable_Component;
 
 /**
  * Abstract Ajax hookable class. Facilitates AJAX calls between wordpress and the plugin with an OOP hookable object
@@ -47,6 +47,10 @@ abstract class Abstract_Ajax_Hookable implements I_Hookable_Component
      */
     private int $priority;
 
+    private bool $isAdminScript;
+
+    private array $dependencies;
+
     private const CALLBACK = 'callback';
     private const CALLBACK_NOPRIV = 'callback_nopriv';
 
@@ -60,24 +64,32 @@ abstract class Abstract_Ajax_Hookable implements I_Hookable_Component
      * @param string $jsFilePath absolute path of the Javascript file.
      * @param integer $priority when executing, the priority of this hook. default `10`
      */
-    public function __construct(string $handle, string $jsFilePath, int $priority = 10)
+    public function __construct(string $handle, string $jsFilePath, int $priority = 10, array $deps = [])
     {
         $this->scriptHandle = $handle;
         $this->objectName = $handle . self::OBJECT_SUFFIX;
         $this->nonceName = $handle . self::NONCE_SUFFIX;
         $this->jsFilePath = $jsFilePath;
+        $this->dependencies = array_merge(['jquery', 'wp-i18n'], $deps);
 
         $this->priority = $priority;
+        $this->isAdminScript = false;
+    }
+
+    public function set_admin(bool $isAdminScript): void
+    {
+        $this->isAdminScript = $isAdminScript;
     }
 
     final public function register(): void
     {
-        \add_action(
-            'wp_enqueue_scripts',
+        add_action(
+            $this->isAdminScript ? 'admin_enqueue_scripts' : 'wp_enqueue_scripts',
             array(
                 $this,
                 'enqueue_ajax'
             ),
+            $this->priority
         );
         add_action(
             "wp_ajax_{$this->scriptHandle}",
@@ -107,7 +119,7 @@ abstract class Abstract_Ajax_Hookable implements I_Hookable_Component
         wp_enqueue_script(
             $this->scriptHandle,
             $this->jsFilePath,
-            array('jquery'),
+            $this->dependencies,
             wp_rand(0, 2000),
             true
         );
