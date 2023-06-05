@@ -6,9 +6,9 @@ namespace SKEL;
 
 require plugin_dir_path(__FILE__) . '/vendor/autoload.php';
 
-use SKEL\Includes\Activator;
-use SKEL\Includes\Deactivator;
-use SKEL\Includes\Plugin;
+use SKEL\includes\Activator;
+use SKEL\includes\Deactivator;
+use SKEL\includes\Plugin;
 
 /**
  * @link              N/A
